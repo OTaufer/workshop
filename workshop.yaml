@@ -1,30 +1,33 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: magento-echo-deployment
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: magento-echo
-  template:
-    metadata:
-      labels:
-        app: magento-echo
-    spec:
-      containers:
-      - name: magento-echo
-        image: taufic/workshop:latest
-
----
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: magento-echo-service
+  name: myweb-service
 spec:
   selector:
-    app: magento-echo
+    app: myweb
   ports:
-    - port: 80
+  - name: http
+    port: 80
+    targetPort: 80
   type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myweb-deployment
+spec:
+  selector:
+    matchLabels:
+      app: myweb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: myweb
+    spec:
+      containers:
+      - name: myweb
+        image: taufic/workshop:latest
+        ports:
+        - name: http
+          containerPort: 80
