@@ -1,0 +1,14 @@
+apiVersion: v2
+name: magento-docker
+version: 0.1.0
+
+appVersion: 1.0.0
+
+description: Magento Docker Chart
+
+resources:
+  - name: magento-docker-image
+    type: DockerImage
+    source:
+      repository: taufic/workshop:latest
+      tag: latest
