@@ -10,5 +10,5 @@ resources:
   - name: magento-docker-image
     type: DockerImage
     source:
-      repository: taufic/workshop:latest
+      repository: taufic/workshop
       tag: latest
