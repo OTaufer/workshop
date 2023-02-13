@@ -1,14 +1,32 @@
-apiVersion: v2
-name: magento-docker
-version: 0.1.0
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magento-echo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magento-echo
+  template:
+    metadata:
+      labels:
+        app: magento-echo
+    spec:
+      containers:
+      - name: magento-echo
+        image: taufic/workshop:latest
 
-appVersion: 1.0.0
+---
 
-description: Magento Docker Chart
-
-resources:
-  - name: magento-docker-image
-    type: DockerImage
-    source:
-      repository: taufic/workshop
-      tag: latest
+apiVersion: v1
+kind: Service
+metadata:
+  name: magento-echo-service
+spec:
+  selector:
+    app: magento-echo
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  type: ClusterIP
