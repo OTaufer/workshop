@@ -27,6 +27,6 @@ spec:
     app: magento-echo
   ports:
   - name: http
-    port: 80
+    port: 32309
     targetPort: 80
   type: ClusterIP
