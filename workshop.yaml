@@ -7,7 +7,7 @@ spec:
     app: myweb
   ports:
   - name: http
-    port: 80
+    port: 32310
     targetPort: 80
   type: ClusterIP
 ---
